@@ -1,4 +1,18 @@
-<ul class="nav-links">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>João Aduílio | Web Developer</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<nav>
+  <span class="nav-logo">[ JA.DEV ]</span>
+  <ul class="nav-links">
     <li><a href="#hero">Início</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projetos</a></li>
@@ -6,16 +20,13 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-container">
-
     <div class="system-window">
       <div class="window-header">System — Player Status</div>
       <div class="avatar-wrap">
         <div class="avatar">
-          <!-- Salva uma imagem do Himmel como "avatar.jpg" na mesma pasta -->
-          <img src="https://i.imgur.com/m1W9dZO.jpeg" alt="Himmel" onerror="this.style.display='none'; this.parentElement.innerHTML='⚔';" />
+          <img src="avatar.jpg" alt="Himmel" onerror="this.style.display='none'; this.parentElement.innerHTML='⚔';"/>
         </div>
       </div>
       <div class="player-name">João Aduílio</div>
@@ -24,9 +35,8 @@
       <div class="stat-row"><span class="stat-label">CLASS</span><span class="stat-value">Front-end Dev</span></div>
       <div class="stat-row"><span class="stat-label">RANK</span><span class="stat-value">Em evolução ▲</span></div>
       <div class="stat-row"><span class="stat-label">GITHUB</span><span class="stat-value">joaoaduilio33</span></div>
-      <div class="stat-row"><span class="stat-label">STATUS</span><span class="stat-value" style="color:#4ade80">● ONLINE</span></div>
+      <div class="stat-row"><span class="stat-label">STATUS</span><span class="stat-value online">● ONLINE</span></div>
     </div>
-
     <div class="hero-text">
       <div class="hero-greeting">// INICIANDO SISTEMA...</div>
       <div class="hero-title">João<br/>Aduílio</div>
@@ -38,11 +48,9 @@
         <a href="https://github.com/joaoaduilio33" target="_blank" class="btn btn-outline">GitHub ↗</a>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
     <div>
@@ -79,7 +87,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
     <div>
@@ -95,7 +102,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
     <div>
@@ -114,5 +120,54 @@
 </section>
 
 <footer>
-  © 2026 João Aduílio — Crafted with ⚔ & ☕
+  &copy; 2026 João Aduílio — Crafted with ⚔ & ☕
 </footer>
+
+<script>
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 35; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    container.appendChild(p);
+  }
+
+  const phrases = ['Web Developer', 'Front-end Enthusiast', 'Code & Design Lover'];
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed-text');
+  function type() {
+    const word = phrases[pi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  type();
+
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => obs.observe(r));
+
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skills-grid').forEach(g => skillObs.observe(g));
+</script>
+
+</body>
+</html>
