@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090e17">
+    <meta name="description" content="SKY.OS — João Aduílio’s midnight developer profile. Developer, gamer and tech enthusiast. Explore my projects, skills and the next quests on my programming journey.">
+    <title>SKY.OS — João Aduílio’s player profile</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/Silkscreen-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="sky-background" aria-hidden="true">
+      <div class="ambient ambient-violet"></div>
+      <div class="ambient ambient-blue"></div>
+      <div class="sky-grain"></div>
+      <div class="sky-stars parallax-plane" style="--depth: .2"><div class="sky-star-track" id="sky-stars"></div></div>
+      <div class="sky-mid parallax-plane" style="--depth: .55" id="sky-mid"></div>
+      <div class="sky-near parallax-plane" style="--depth: 1" id="sky-near"></div>
+      <div class="sky-accents parallax-plane" style="--depth: .8" id="sky-accents"></div>
+    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="boot" id="boot" hidden aria-label="Loading your world">
+      <div class="boot-window">
+        <span class="boot-star" aria-hidden="true">✦</span>
+        <span class="eyebrow">SKY.OS / PLAYER SESSION / LOADING</span>
+        <div class="boot-lines">
+          <p>
+            loading the player profile...
+          </p>
+          <p>
+            preparing the inventory...
+          </p>
+          <p>
+            restoring the last checkpoint...
+          </p>
+          <p class="blue">
+            ready for the next session. <span class="cursor">_</span>
+          </p>
+        </div>
+        <div class="boot-track" aria-hidden="true"><span></span></div>
+        <button id="skip-boot">PRESS ANY KEY OR CLICK TO SKIP ↵</button>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a href="#home" class="brand" aria-label="SKY.OS home"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-sky">SKY</span><span class="brand-os">.OS</span><span class="version">WORLD 01</span></a> <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navigation"><span>[</span> MENU <span>+ ]</span></button>
+        <nav id="navigation" aria-label="Main navigation">
+          <a href="#home" class="active" aria-current="location">HOME</a><a href="#profile">PROFILE</a><a href="#skills">SKILLS</a><a href="#quests">QUESTS</a><a href="#projects">PROJECTS</a><a href="#contact">CONTACT</a>
+        </nav>
+        <button class="motion-toggle" id="motion-toggle" aria-label="Toggle animations" aria-pressed="false" hidden><span aria-hidden="true">✦</span><span id="motion-label">FX OFF</span></button>
+      </div>
+    </header>
+    <main id="main">
+      <section id="home" class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-topline">
+          <span><span class="blue">●</span> PERSONAL INTERFACE / SKY.OS</span><span class="hero-coordinate">BR · UTC−03:00 <span class="muted">//</span> <time id="local-clock">--:--:--</time></span>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="small-cross">✳</span> DEVELOPER. GAMER. ALWAYS EVOLVING.
+            </p>
+            <h1 id="hero-title" data-profile="name">
+              João Aduílio
+            </h1>
+            <div class="identity-line">
+              <span class="username" data-profile="username">@sky</span><span class="online-badge"><i class="status-dot"></i> ONLINE</span>
+            </div>
+            <p class="hero-role" data-profile="title">
+              Developer <span>/</span> Tech Enthusiast
+            </p>
+            <p class="hero-description" data-profile="tagline">
+              Learning, building and turning random ideas into real projects.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects"><span aria-hidden="true">↗</span> VIEW PROJECTS <span aria-hidden="true">→</span></a><a class="button button-secondary" href="#profile"><span aria-hidden="true">[</span> ABOUT ME <span aria-hidden="true">]</span></a>
+            </div>
+            <div class="mission-line">
+              <span class="mission-icon" aria-hidden="true">⌘</span>
+              <div>
+                <span class="eyebrow">CURRENT MISSION</span>
+                <p data-profile="mission">
+                  Building cool things and becoming a better developer.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="player-module">
+            <span class="orbit-tag orbit-tag-top" aria-hidden="true">DEV CLASS / LV. <span data-profile="level">12</span></span>
+            <span class="orbit-tag orbit-tag-bottom" aria-hidden="true">PLAYER 01 / ACTIVE</span>
+            <div class="panel-bar">
+              <span><i class="status-dot"></i> PLAYER ONE</span><span>MY CHARACTER <span class="blue">⌗</span></span>
+            </div>
+            <div class="portrait-stage">
+              <div class="portrait-grid" aria-hidden="true">
+              </div>
+              <span class="hud-label hud-top">PLAYER PROFILE / 001</span><span class="hud-label hud-right">BUILD • PLAY • REPEAT</span>
+              <div class="portrait-frame" id="portrait-frame">
+                <div class="portrait-fallback" role="img" aria-label="João Aduílio profile placeholder" hidden>
+                  <span class="fallback-code">SKY / PLAYER CARD</span><span class="avatar-monogram">JA<span>✦</span></span><span class="fallback-caption">CREATIVE MIND.<br><b>HANDS ON THE KEYBOARD.</b></span>
+                </div>
+                <img id="profile-image" src="assets/profile.jpg" alt="João Aduílio's profile portrait" width="600" height="600" fetchpriority="high"> <span class="corner top-left"></span><span class="corner top-right"></span><span class="corner bottom-left"></span><span class="corner bottom-right"></span>
+              </div>
+              <span class="floating-pixel pixel-one" aria-hidden="true"></span><span class="floating-pixel pixel-two" aria-hidden="true"></span><span class="floating-pixel pixel-three" aria-hidden="true"></span> <span class="portrait-class">CLASS <b>DEVELOPER</b></span><span class="level-chip">LV. <strong data-profile="level">12</strong></span>
+            </div>
+            <div class="xp-panel">
+              <div class="xp-label">
+                <span>DEVELOPER EXPERIENCE</span><span><b id="xp-current">7,420</b> <span class="muted">/ <span id="xp-max">10,000</span> XP</span></span>
+              </div>
+              <div class="progress segmented" id="hero-xp" role="progressbar" aria-label="Developer experience" aria-valuemin="0" aria-valuemax="10000" aria-valuenow="7420">
+                <span style="--progress:74.2%"></span>
+              </div>
+              <div class="xp-caption">
+                <span>Every small step counts.</span><span class="blue">NEXT LEVEL →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <div>
+            <span class="tiny-icon steel">⌁</span><span>CURRENTLY LEARNING<b data-profile="learning">Artificial Intelligence</b></span>
+          </div>
+          <div>
+            <span class="tiny-icon violet">&gt;_</span><span>MAIN LANGUAGE<b data-profile="language">HTML</b></span>
+          </div>
+          <a href="#profile" class="scroll-prompt">SCROLL TO EXPLORE <span>↓</span></a>
+        </div>
+      </section>
+      <div class="system-divider">
+        <span>CHOOSE YOUR NEXT CHECKPOINT</span><span aria-hidden="true">＋ ＋ ＋</span><span>PROGRESS SAVED / NEXT CHECKPOINT</span>
+      </div>
+      <section id="profile" class="section-shell content-section" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span>01 /</span> THE PERSON BEHIND THE SCREEN
+            </p>
+            <h2 id="profile-title">
+              PLAYER PROFILE<span class="blue">.</span>
+            </h2>
+          </div>
+          <span class="section-code">A LITTLE ABOUT ME</span>
+        </div>
+        <div class="about-grid">
+          <div class="terminal-panel reveal">
+            <div class="panel-bar">
+              <span><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot blue-dot"></i> player journal</span><span>CHAPTER 01</span>
+            </div>
+            <dl class="profile-data">
+              <div>
+                <dt>
+                  name
+                </dt>
+                <dd data-profile="displayName">
+                  João Aduílio
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  class
+                </dt>
+                <dd>
+                  Developer
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  location
+                </dt>
+                <dd data-profile="location">
+                  Brazil
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  status
+                </dt>
+                <dd class="blue">
+                  Learning <span class="cursor">_</span>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  specialty
+                </dt>
+                <dd>
+                  Creative Projects
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  current_focus
+                </dt>
+                <dd>
+                  Programming &amp; AI
+                </dd>
+              </div>
+            </dl>
+            <div class="terminal-footer">
+              <span class="blue">&gt;</span> currently powered by curiosity
+            </div>
+          </div>
+          <div class="about-copy reveal">
+            <span class="micro-tag">A LITTLE CONTEXT</span>
+            <h3>
+              Curiosity is my<br>default setting<span class="blue">.</span>
+            </h3>
+            <p data-profile="about">
+              I'm João Aduílio, a developer in the making from Brazil. I like figuring out how things work — then seeing what else they could become.
+            </p>
+            <p data-profile="aboutMore">
+              Some days that means writing Python. Other days, it's experimenting with a game idea or going down an AI rabbit hole. This is my little corner of the internet to share what I'm building and learning along the way.
+            </p>
+            <div class="interest-tags">
+              <span>⌘ Creative coding</span><span>✳ Game worlds</span><span>⌁ New ideas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="skills" class="section-shell content-section" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span>02 /</span> EQUIPPED &amp; ALWAYS UPGRADING
+            </p>
+            <h2 id="skills-title">
+              SKILL MATRIX<span class="blue">.</span>
+            </h2>
+          </div>
+          <span class="section-code">07 ITEMS EQUIPPED</span>
+        </div>
+        <div class="skill-grid" id="skill-grid">
+        </div>
+        <p class="section-footnote">
+          <span class="blue">*</span> Levels are a playful snapshot of my journey, not an objective skill rating.
+        </p>
+      </section>
+      <section id="quests" class="section-shell content-section" aria-labelledby="quests-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span>03 /</span> THE NEXT CHECKPOINT
+            </p>
+            <h2 id="quests-title">
+              ACTIVE QUESTS<span class="blue">.</span>
+            </h2>
+          </div>
+          <span class="section-code" id="quest-count">04 QUESTS TRACKED</span>
+        </div>
+        <div class="quest-list" id="quest-list">
+        </div>
+      </section>
+      <section id="projects" class="section-shell content-section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span>04 /</span> IDEAS THAT MADE IT OUT OF MY HEAD
+            </p>
+            <h2 id="projects-title">
+              PROJECT ARCHIVE<span class="blue">.</span>
+            </h2>
+          </div>
+          <div class="archive-filters" role="group" aria-label="Filter projects">
+            <button class="active" data-filter="all" aria-pressed="true">ALL <span>03</span></button><button data-filter="game" aria-pressed="false">GAMES</button><button data-filter="experiment" aria-pressed="false">EXPERIMENTS</button>
+          </div>
+        </div>
+        <div class="project-grid" id="project-grid">
+        </div>
+        <p class="section-footnote">
+          Archive preview · Projects and technologies are editable placeholders.
+        </p>
+      </section>
+      <section class="stats-section" aria-labelledby="stats-title">
+        <div class="section-shell">
+          <div class="stats-header">
+            <h2 id="stats-title" class="eyebrow">
+              <span class="blue">⌗</span> DEVELOPER STATS
+            </h2>
+            <span>CHARACTER SHEET / SNAPSHOT</span>
+          </div>
+          <div class="stats-grid" id="stats-grid">
+          </div>
+          <p class="stats-note">
+            Personal counters · sample values, updated manually.
+          </p>
+        </div>
+      </section>
+      <section id="journey" class="section-shell content-section" aria-labelledby="journey-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span>05 /</span> SAVING PROGRESS
+            </p>
+            <h2 id="journey-title">
+              DEV_LOG<span class="blue">.</span>
+            </h2>
+          </div>
+          <span class="section-code">EVERY CHAPTER COUNTS</span>
+        </div>
+        <div class="journey-grid">
+          <div class="journey-intro reveal">
+            <p class="large-prompt">
+              &gt; one commit<br>&nbsp; at a time<span class="cursor blue">_</span>
+            </p>
+            <p>
+              No speedruns here. Just curiosity, a few bugs, and something new learned every day.
+            </p>
+            <span class="micro-tag">AUTO-SAVE ENABLED</span>
+          </div>
+          <ol class="timeline" id="timeline">
+          </ol>
+        </div>
+      </section>
+      <section id="contact" class="section-shell content-section" aria-labelledby="contact-title">
+        <div class="contact-panel reveal">
+          <div class="contact-copy">
+            <p class="eyebrow">
+              <span>06 /</span> START A CONVERSATION
+            </p>
+            <h2 id="contact-title">
+              LET'S CONNECT<span class="blue">_</span>
+            </h2>
+            <p>
+              Cool idea, shared interest, or just a hello?<br> My next favorite project might start with a conversation.
+            </p>
+            <span class="connection-note"><i class="status-dot"></i> OPEN TO IDEAS &amp; COLLABORATIONS</span>
+          </div>
+          <div class="connection-links" id="connection-links">
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="section-shell site-footer">
+      <a href="#home" class="footer-brand"><span class="brand-sky">SKY</span><span class="brand-os">.OS</span></a>
+      <p>
+        Built with curiosity. Powered by too many ideas.
+      </p>
+      <span>© <span id="year">2026</span> João Aduílio <span class="blue">◆</span></span><button id="dev-mode" aria-label="Unlock the alternate interface" title="Three clicks. One hidden mode.">[ ✦ ]</button>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    </div>
+    <dialog id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-bar">
+        <span>PROJECT ARCHIVE / ADVENTURE DETAILS</span><button id="close-dialog" aria-label="Close project details">[ × ]</button>
+      </div>
+      <div id="dialog-content">
+      </div>
+    </dialog>
+    <noscript>
+      <div class="noscript-message">
+        Enable JavaScript to load the skill matrix, quests and project archive. Your player profile is still available above.
+      </div>
+    </noscript>
+  </body>
+</html>
