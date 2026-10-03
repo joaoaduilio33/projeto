@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070709">
+    <meta name="robots" content="noindex">
+    <title>GAME OVER — SKY.OS</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,500..900;1,800..900&display=swap" rel="stylesheet">
+    <style>
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: #070709;
+        color: #f6f1f2;
+        font-family: "Exo 2", "Segoe UI", sans-serif;
+        text-align: center;
+      }
+      /* a Gotoh perdida na floresta, escurecida e puxada para o vermelho */
+      .scene {
+        position: fixed;
+        inset: -20px;
+        z-index: -2;
+        background: url("/assets/gotoh-forest.webp") center / cover no-repeat;
+        filter: brightness(.55) saturate(.8);
+        animation: drift 24s ease-in-out infinite alternate;
+      }
+      .tint {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(ellipse at center, transparent 20%, rgba(7, 7, 9, .85) 75%),
+          linear-gradient(180deg, rgba(120, 6, 28, .35), rgba(7, 7, 9, .7));
+      }
+      .scan { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 2px, transparent 2px 4px); }
+      main { position: relative; z-index: 1; padding: 24px; }
+      .code { margin: 0 0 6px; font-size: .78rem; font-weight: 700; letter-spacing: .32em; color: #ff8fa6; text-transform: uppercase; }
+      h1 {
+        position: relative;
+        margin: 0;
+        font-weight: 900;
+        font-style: italic;
+        font-size: clamp(3.600rem, 15vw, 11rem);
+        line-height: .9;
+        letter-spacing: -.01em;
+        color: #ff2d55;
+        text-shadow: 0 0 40px rgba(255, 45, 85, .55);
+        animation: drop .9s cubic-bezier(.2, .8, .2, 1) both;
+      }
+      /* falha de imagem no título */
+      h1::before, h1::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; }
+      h1::before { color: #f2c9d3; clip-path: inset(0 0 62% 0); animation: glitch 3s steps(1) infinite; }
+      h1::after { color: #5ad1ff; clip-path: inset(70% 0 0 0); animation: glitch 3s steps(1) infinite reverse; opacity: .7; }
+      .lost { margin: 18px auto 0; max-width: 34ch; font-size: clamp(1rem, 2.200vw, 1.250rem); line-height: 1.5; color: #e7dde0; }
+      .continue { margin: 34px 0 10px; font-size: 1.1rem; font-weight: 800; letter-spacing: .3em; color: #f2c9d3; }
+      .count { display: block; font-size: clamp(3.500rem, 10vw, 6rem); font-weight: 900; line-height: 1; color: #fff; text-shadow: 0 0 30px rgba(255, 45, 85, .6); }
+      .count.tick { animation: tick .35s ease-out; }
+      .choices { display: flex; justify-content: center; gap: 18px; margin-top: 22px; }
+      .choices a, .choices button {
+        min-width: 140px;
+        padding: 14px 26px;
+        border: 2px solid #ff2d55;
+        background: rgba(255, 45, 85, .08);
+        color: #fff;
+        font: inherit;
+        font-weight: 800;
+        letter-spacing: .14em;
+        text-decoration: none;
+        cursor: pointer;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        transition: background .2s, transform .2s;
+      }
+      .choices a { background: #ff2d55; }
+      .choices a:hover, .choices button:hover { transform: translateY(-2px); background: #ff2d55; }
+      :focus-visible { outline: 2px solid #f2c9d3; outline-offset: 4px; }
+      .note { min-height: 1.500em; margin-top: 18px; font-size: .95rem; color: #b8adb2; }
+      @keyframes drift { from { transform: scale(1.04) translateX(-10px); } to { transform: scale(1.08) translateX(10px); } }
+      @keyframes drop { from { opacity: 0; transform: translateY(-40px) scale(1.15); filter: blur(10px); } }
+      @keyframes glitch { 0%, 86%, 100% { transform: none; } 88% { transform: translateX(-6px); } 90% { transform: translateX(5px); } 92% { transform: translateX(-3px); } }
+      @keyframes tick { from { transform: scale(1.4); opacity: .4; } }
+    </style>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true"></div>
+    <div class="tint" aria-hidden="true"></div>
+    <div class="scan" aria-hidden="true"></div>
+
+    <main>
+      <p class="code" id="code">Error 404 · page not found</p>
+      <h1 data-text="GAME OVER">GAME OVER</h1>
+      <p class="lost" id="lost">You got lost in the forest. Gotoh did too.</p>
+      <p class="continue" id="continue">CONTINUE?</p>
+      <span class="count" id="count" aria-live="polite">9</span>
+      <div class="choices">
+        <a href="/" id="yes">YES</a>
+        <button type="button" id="no">NO</button>
+      </div>
+      <p class="note" id="note"></p>
+    </main>
+
+    <script>
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('sky-lang'); } catch (e) {}
+        var pt = (saved || navigator.language || '').toLowerCase().indexOf('pt') === 0;
+        var t = pt ? {
+          code: 'Erro 404 · página não encontrada',
+          lost: 'Você se perdeu na floresta. A Gotoh também.',
+          cont: 'CONTINUAR?', yes: 'SIM', no: 'NÃO',
+          stay: '...tá bom, fica aqui com ela mais um pouco.',
+          back: 'Voltando ao último checkpoint...'
+        } : {
+          code: 'Error 404 · page not found',
+          lost: 'You got lost in the forest. Gotoh did too.',
+          cont: 'CONTINUE?', yes: 'YES', no: 'NO',
+          stay: '...okay, stay here with her a little longer.',
+          back: 'Returning to the last checkpoint...'
+        };
+        document.documentElement.lang = pt ? 'pt-BR' : 'en';
+        document.getElementById('code').textContent = t.code;
+        document.getElementById('lost').textContent = t.lost;
+        document.getElementById('continue').textContent = t.cont;
+        document.getElementById('yes').textContent = t.yes;
+        document.getElementById('no').textContent = t.no;
+
+        // contagem de "continue?" como nos fliperamas; no zero, volta ao início
+        var count = document.getElementById('count');
+        var note = document.getElementById('note');
+        var n = 9;
+        var timer = setInterval(function () {
+          n -= 1;
+          count.textContent = n;
+          count.classList.remove('tick');
+          void count.offsetWidth;
+          count.classList.add('tick');
+          if (n <= 0) {
+            clearInterval(timer);
+            note.textContent = t.back;
+            setTimeout(function () { location.href = '/'; }, 1200);
+          }
+        }, 1000);
+
+        document.getElementById('no').addEventListener('click', function () {
+          clearInterval(timer);
+          count.textContent = '∞';
+          note.textContent = t.stay;
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') location.href = '/';
+        });
+      })();
+    </script>
+  </body>
+</html>
