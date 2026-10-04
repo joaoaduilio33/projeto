@@ -89,6 +89,25 @@ const DATA = {
       techs: ['HTML', 'CSS', 'JavaScript', 'Vite'],
       images: ['assets/projects/valorant.webp'],
       url: 'https://valorant-fansite.vercel.app'
+    },
+    {
+      id: 'teyvara',
+      name: 'TEYVARA',
+      category: 'web',
+      type: { en: 'WEB · FAN WIKI', pt: 'WEB · WIKI DE FÃ' },
+      status: { en: 'LIVE', pt: 'NO AR' },
+      live: true,
+      short: {
+        en: 'An unofficial Genshin Impact fan wiki with builds, team comps, tier list, banners and events.',
+        pt: 'Uma wiki de fã não oficial de Genshin Impact com builds, times, tier list, banners e eventos.'
+      },
+      details: {
+        en: 'Pages for 122 characters, 255 weapons and 63 artifact sets, each with builds and the best teams, plus a tier list, current banners and live events with their sources. Available in Portuguese and English, with global search. Built with Next.js, React, TypeScript and Tailwind, prerendered and deployed on Vercel.',
+        pt: 'Páginas para 122 personagens, 255 armas e 63 sets de artefatos, com builds e os melhores times, além de tier list, banners atuais e eventos no ar com as fontes. Em português e inglês, com busca global. Feito com Next.js, React, TypeScript e Tailwind, pré-renderizado e publicado na Vercel.'
+      },
+      techs: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+      images: ['assets/projects/teyvara.webp'],
+      url: 'https://teyvara.vercel.app'
     }
   ],
 
@@ -116,6 +135,7 @@ const DATA = {
     { date: { en: 'FEB 2026', pt: 'FEV 2026' }, title: { en: 'Launched Protocolo // Valorant', pt: 'Lancei o Protocolo // Valorant' }, desc: { en: 'My first fan site went live.', pt: 'Meu primeiro fansite foi ao ar.' } },
     { date: { en: 'AUG 2026', pt: 'AGO 2026' }, title: { en: 'Started Sociabble in Godot', pt: 'Comecei o Sociabble no Godot' }, desc: { en: 'Game mechanics, dialogue and a social system.', pt: 'Mecânicas, diálogos e um sistema social.' } },
     { date: { en: 'SEP 2026', pt: 'SET 2026' }, title: { en: 'Modeled AFTER HOURS in Blender', pt: 'Modelei o AFTER HOURS no Blender' }, desc: { en: 'A full bedroom set, 940 objects.', pt: 'Um quarto completo, 940 objetos.' } },
+    { date: { en: 'OCT 2026', pt: 'OUT 2026' }, title: { en: 'Launched Teyvara', pt: 'Lancei o Teyvara' }, desc: { en: 'A Genshin Impact fan wiki in Next.js.', pt: 'Uma wiki de fã de Genshin Impact em Next.js.' } },
     { date: { en: 'OCT 2026', pt: 'OUT 2026' }, title: { en: 'Rebuilt SKY.OS', pt: 'Refiz o SKY.OS' }, desc: { en: 'Current checkpoint: you are here.', pt: 'Checkpoint atual: você está aqui.' } }
   ],
 
